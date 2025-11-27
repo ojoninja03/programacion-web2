@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <title>Login</title>
+</head>
+
+<body class="blue lighten-5">
+
+    <div class="container" style="margin-top: 80px;">
+        <div class="card-panel">
+
+            <h4 class="blue-text center">Ingreso</h4>
+
+            <% if (error) { %>
+            <div class="card-panel red lighten-4 red-text text-darken-4">
+                <%= error %>
+            </div>
+            <% } %>
+
+            <form method="POST" action="/login">
+
+                <div class="input-field">
+                    <input type="text" name="username" required>
+                    <label>Usuario</label>
+                </div>
+
+                <div class="input-field">
+                    <input type="password" name="password" required>
+                    <label>Contraseña</label>
+                </div>
+
+                <button class="btn blue" style="width:100%;">Entrar</button>
+            </form>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

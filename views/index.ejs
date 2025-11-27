@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Usuarios</title>
+
+  <!-- MATERIALIZE -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css"> <!-- tu CSS -->
+</head>
+
+<body class="blue lighten-5">
+
+  <div class="container">
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:40px;">
+      <h3 class="blue-text text-darken-3">Lista de Usuarios</h3>
+
+      <!-- CERRAR SESIÓN EN AZUL -->
+      <a href="/logout" class="btn blue">Cerrar Sesión</a>
+    </div>
+
+    <!-- TABLA -->
+    <table class="highlight responsive-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th class="right-align">Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody id="tbody">
+
+        <% lista.forEach(u => { %>
+          <tr data-id="<%= u.id %>">
+
+            <td><%= u.id %></td>
+
+            <td class="td-nombre">
+              <span><%= u.nombre %></span>
+            </td>
+
+            <td class="td-correo">
+              <span><%= u.correo %></span>
+            </td>
+
+            <td class="td-actions right-align">
+
+              <button class="btn green editBtn">Editar</button>
+
+              <a href="/delete/<%= u.id %>" class="btn red"
+                onclick="return confirm('¿Eliminar usuario?');">
+                Eliminar
+              </a>
+
+            </td>
+
+          </tr>
+        <% }) %>
+
+      </tbody>
+    </table>
+
+    <!-- FORMULARIO AGREGAR -->
+    <div class="card-panel" style="margin-top:40px;">
+      <h5>Agregar Usuario</h5>
+
+      <form action="/add" method="POST">
+        <div class="input-field">
+          <input type="text" name="name" required>
+          <label>Nombre</label>
+        </div>
+
+        <div class="input-field">
+          <input type="email" name="email" required>
+          <label>Correo</label>
+        </div>
+
+        <!-- Botón agregar mantiene azul -->
+        <button class="btn blue">Agregar</button>
+      </form>
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="/js/usuarios.js"></script>
+
+</body>
+
+</html>
